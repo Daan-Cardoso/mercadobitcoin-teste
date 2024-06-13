@@ -1,6 +1,6 @@
 <template>
   <label class="c-input">
-    <span class="c-input__label">
+    <span class="c-input__label" v-if="label">
       {{ label }}
     </span>
 
@@ -18,7 +18,7 @@
 import { defineModel, useAttrs, defineOptions } from 'vue'
 
 defineProps({
-  label: String
+  label: { type: String, required: false }
 })
 
 defineOptions({ inheritAttrs: false })
@@ -40,8 +40,8 @@ const inputAttrs = filteredAttrs($attrs)
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: .5rem;
-
+  gap: .25rem;
+  font-family: sans-serif;
 
   @include Desktop {
     align-items: center;
@@ -51,12 +51,19 @@ const inputAttrs = filteredAttrs($attrs)
 
   &__label {
     display: block;
+    font-size: .8rem;
+    color: $dark;
+    letter-spacing: -0.4px;
   }
 
   &__field {
     border-radius: .5rem;
-    border: 1px solid $black;
+    border: 1px solid $dark;
     width: 100%;
+
+    &:focus-within {
+      border-color: $primary;
+    }
 
     &__raw {
       border-radius: inherit;
