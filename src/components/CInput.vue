@@ -16,6 +16,7 @@
 
 <script setup>
 import { defineModel, useAttrs, defineOptions } from 'vue'
+import { filteredAttrs } from '../helpers/filterAttributes'
 
 defineProps({
   label: { type: String, required: false }
@@ -25,12 +26,6 @@ defineOptions({ inheritAttrs: false })
 
 const $attrs = useAttrs()
 const value = defineModel()
-
-const filteredAttrs = (attrs) => {
-  return Object.fromEntries(
-    Object.entries(attrs).filter(([key]) => key !== 'class')
-  )
-}
 
 const inputAttrs = filteredAttrs($attrs)
 </script>

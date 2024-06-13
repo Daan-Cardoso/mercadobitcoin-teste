@@ -1,18 +1,19 @@
 <template>
   <div>
-    <c-input
-      label="Name"
-      placeholder="Enter your name"
-      v-model="name"
-    />
+    <CButton class="teste" text="teste" outlined @click="submit" />
+    <CButton class="teste" text="teste 2" @click="submit" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import CInput from './components/CInput.vue'
+import CButton from './components/CButton.vue'
 
 const name = ref('')
+
+const submit = () => {
+  console.log('clicked')
+}
 </script>
 
 <style lang="scss" scoped>
