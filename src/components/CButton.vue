@@ -36,20 +36,23 @@ const classModifiers = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $primary;
   border: 1px solid transparent;
   padding: 10px;
   border-radius: .5rem;
   width: 100%;
-  cursor: pointer;
   transition: all linear .3s;
-  color: $white;
 
-  &:hover {
-    background-color: rgba($primary, .7 );
+  &:not(:disabled) {
+    background-color: $primary;
+    color: $white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($primary, .7 );
+    }
   }
 
-  &--outlined {
+  &--outlined:not(:disabled) {
     border-color: $primary;
     color: $primary;
     background-color: transparent;

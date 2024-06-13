@@ -2,6 +2,7 @@
   <div>
     <CButton class="teste" text="teste" outlined @click="submit" />
     <CButton class="teste" text="teste 2" @click="submit" />
+    <CButton class="teste" text="teste 2" @click="submit" disabled />
   </div>
 </template>
 
