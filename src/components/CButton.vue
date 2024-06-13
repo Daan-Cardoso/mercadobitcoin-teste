@@ -31,16 +31,16 @@ const classModifiers = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .c-button {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  border: 1px solid transparent;
-  padding: 10px;
   border-radius: .5rem;
-  width: 100%;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: center;
+  padding: 10px 40px;
   transition: all linear .3s;
+  width: 100%;
 
   &:not(:disabled) {
     background-color: $primary;
@@ -48,14 +48,14 @@ const classModifiers = computed(() => {
     cursor: pointer;
 
     &:hover {
-      background-color: rgba($primary, .7 );
+      background-color: rgba($primary, .7);
     }
   }
 
   &--outlined:not(:disabled) {
+    background-color: transparent;
     border-color: $primary;
     color: $primary;
-    background-color: transparent;
 
     &:hover {
       background-color: $primary;

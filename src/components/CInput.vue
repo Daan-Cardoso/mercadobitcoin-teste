@@ -30,13 +30,13 @@ const value = defineModel()
 const inputAttrs = filteredAttrs($attrs)
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .c-input {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  gap: .25rem;
   font-family: sans-serif;
+  gap: .25rem;
+  width: 100%;
 
   @include Desktop {
     align-items: center;
@@ -45,9 +45,9 @@ const inputAttrs = filteredAttrs($attrs)
   }
 
   &__label {
+    color: $dark;
     display: block;
     font-size: .8rem;
-    color: $dark;
     letter-spacing: -0.4px;
   }
 
