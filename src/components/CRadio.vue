@@ -1,6 +1,6 @@
 <template>
   <label class="c-radio">
-    <input type="radio" class="c-radio__field" v-bind="radioAttrs" />
+    <input type="radio" class="c-radio__field" v-bind="radioAttrs" v-model="value" />
 
     <span class="c-radio__indicator"></span>
 
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { defineOptions, useAttrs } from 'vue'
+import { defineOptions, useAttrs, defineModel } from 'vue'
 import { filteredAttrs } from '../helpers/filterAttributes'
 
 defineProps({
@@ -19,6 +19,8 @@ defineProps({
 })
 
 defineOptions({ inheritAttrs: false })
+
+const value = defineModel()
 
 const $attrs = useAttrs()
 

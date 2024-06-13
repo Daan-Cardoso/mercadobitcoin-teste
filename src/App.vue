@@ -4,8 +4,8 @@
     <CButton class="teste" text="Continuar" @click="submit" />
   </div>
   <div>
-    <c-radio>Pessoa física</c-radio>
-    <c-radio>Pessoa jurídica</c-radio>
+    <c-radio label="Pessoa física" name="tipoPessoa" value="PF" v-model="tipoPessoa" />
+    <c-radio label="Pessoa jurídica" name="tipoPessoa" value="PJ" v-model="tipoPessoa" />
   </div>
 </template>
 
@@ -15,6 +15,7 @@ import CButton from './components/CButton.vue'
 import CRadio from './components/CRadio.vue'
 
 const name = ref('')
+const tipoPessoa = ref(null)
 
 const submit = () => {
   console.log('clicked')
