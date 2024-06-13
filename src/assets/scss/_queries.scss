@@ -1,9 +1,9 @@
-$mobile: screen and (max-width: 767px);
-$tablet: screen and (min-width: 768px);
-$desktop: screen and (min-width: 1440px);
+$mobile: "screen and (max-width: 767px)";
+$tablet: "screen and (min-width: 768px)";
+$desktop: "screen and (min-width: 1440px)";
 
 @mixin Mobile {
-  @media #{$mobile} {
+  @media screen and ($mobile) {
     @content;
   }
 }
@@ -12,7 +12,7 @@ $desktop: screen and (min-width: 1440px);
   $query: $tablet;
 
   @if $only == only-tablet {
-    $query: $tablet and (max-width: 1439px);
+    $query: "#{$tablet} and (max-width: 1439px)";
   }
 
   @media #{$query} {
