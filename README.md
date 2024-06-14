@@ -42,11 +42,11 @@ Para configurar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
    ```sh
-   git clone [url]
+   git clone [https://github.com/Daan-Cardoso/mercadobitcoin-teste]
    ```
 2. Acesse o diretório do repositório:
    ```sh
-   cd mercadobitcoin
+   cd mercadobitcoin-teste
    ```
 3. Instale as dependências utilizando npm ou yarn:
    ```sh
