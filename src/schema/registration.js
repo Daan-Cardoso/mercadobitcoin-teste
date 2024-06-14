@@ -68,6 +68,7 @@ export const schema = (formData) => ({
   password: {
     label: 'Senha',
     type: 'password',
+    autocomplete: 'off',
     required: true,
     validation: (value) => {
       if (value.length < 6) {
@@ -106,7 +107,7 @@ export const steps = (formData) => [
     fields: [ 'email', 'name', 'document', 'date', 'phone', 'password' ],
     actions: {
       prev: 'Voltar',
-      submit: 'Confirmar',
+      submit: 'Cadastrar',
     },
     readonly: true
   },

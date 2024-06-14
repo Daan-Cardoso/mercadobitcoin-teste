@@ -1,15 +1,24 @@
 <template>
   <label class="c-input">
     <span class="c-input__label" v-if="label">
-      {{ label }} <em class="c-input__label__required">{{ $attrs.required ? '*' : '' }}</em>
+      {{ label }} <em class="c-input__label__required">{{ $attrs.required ? '*' : '' }}</em> {{ $attrs.readonly ? '(somente leitura)' : '' }}
     </span>
 
     <div :class="['c-input__field', classModifiers ]">
       <input
         class="c-input__field__raw"
         v-bind="inputAttrs"
+        :type="type === 'password' && showPassword ? 'text' : type"
         v-model="value"
       />
+
+      <template v-if="type === 'password'">
+        <img
+          @click="toggleShowPassword"
+          class="c-input__field__toggle-password"
+          :src="showPassword ? '/closed-eye.svg' : '/opened-eye.svg'"
+        />
+      </template>
       </div>
       
       <span class="c-input__error" v-if="!!error">
@@ -19,7 +28,7 @@
 </template>
 
 <script setup>
-import { defineModel, useAttrs, defineOptions, computed } from 'vue'
+import { defineModel, useAttrs, defineOptions, computed, ref } from 'vue'
 import { filteredAttrs } from '../helpers/formHelpers'
 
 const { error } = defineProps({
@@ -33,12 +42,17 @@ defineOptions({ inheritAttrs: false })
 
 const $attrs = useAttrs()
 const value = defineModel()
+const showPassword = ref(false)
 
 const classModifiers = computed(() => {
   return {
     'c-input__field--has-error': !!error
   }
 })
+
+const toggleShowPassword = () => {
+  showPassword.value = !showPassword.value
+}
 
 const inputAttrs = filteredAttrs($attrs, ['type', 'class', 'required', 'validation'])
 </script>
@@ -94,6 +108,27 @@ const inputAttrs = filteredAttrs($attrs, ['type', 'class', 'required', 'validati
 
       &:focus {
         outline: none;
+      }
+    }
+
+    &:has(&__toggle-password) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      > .c-input{
+        width: calc(100% - 30px);
+      }
+    }
+
+    &__toggle-password {
+      cursor: pointer;
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
+
+      &:hover {
+        opacity: .8;
       }
     }
   }
