@@ -21,3 +21,23 @@ export const filteredAttrs = (attrs, nonAcceptedAttrs = ['class']) => {
     Object.entries(attrs).filter(([key]) => !nonAcceptedAttrs.includes(key))
   )
 }
+
+/**
+ * Valida um email.
+ *
+ * @param {string} value - Email a ser validado.
+ * @returns {boolean} Retorna true se o email for válido e false caso contrário.
+ *
+ * @example
+ * const email = 'teste'
+ * const isValid = validateEmail(email);
+ * // isValid será false
+ * 
+ * const validEmail = 'teste@teste.com'
+ * const isValid = validateEmail(validEmail);
+ * // isValid será true
+ */
+export const validateEmail = (value) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(value);
+}

@@ -3,6 +3,7 @@
     <template v-for="(step, index) in steps" :key="'step' + (index + 1)">
       <form-step
         v-if="activeStep == index"
+        :readonly="step?.readonly"
         :actions="step.actions"
         :current-step="index + 1"
         :form-data="formData"
@@ -20,7 +21,7 @@
 <script setup>
 import FormStep from './FormStep.vue'
 
-const { steps, schema } = defineProps({
+const { steps, schema, formData } = defineProps({
   steps: { type: Array, required: true },
   activeStep: { type: Number, required: true },
   formData: { type: Object, required: true },

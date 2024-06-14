@@ -25,7 +25,12 @@
         
         <template v-else>
           <c-input
+            :error="formData[name].error || ''"
+            :key="formData[name].error"
+            :readonly="readonly"
             v-bind="field"
+            v-mask="field?.mask || formData[name].value"
+            v-model="formData[name].value"
           />
         </template>
       </div>
@@ -44,6 +49,7 @@
 </template>
 
 <script setup>
+import { defineModel } from 'vue'
 import CInput from './CInput.vue'
 import CButton from './CButton.vue'
 import CRadio from './CRadio.vue'
@@ -55,6 +61,7 @@ defineProps({
   formData: { type: Object, required: true },
   actions: { type: Object, required: true },
   stepSchema: { type: Object, required: true },
+  readonly: { type: Boolean, required: false },
 })
 
 defineEmits(['action:prev', 'action:next', 'action:submit'])

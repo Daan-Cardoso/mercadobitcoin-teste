@@ -3,41 +3,44 @@
     <multi-step-form
       :activeStep="activeStep"
       :formData="formData"
-      :schema="schema"
-      :steps="steps"
+      :key="formData.typePerson"
+      :schema="reactiveSchema"
+      :steps="reactiveSteps"
       @action:next="nextStep"
       @action:prev="prevStep"
       @action:submit="submit"
     />
-
-    <c-input mask="###.###.###-##" v-model="teste" />
   </main>
 </template>
 
 <script setup>
-import { reactive, ref, computed } from 'vue'
-import { steps as registerSteps, schema as fullSchema } from './schema/Register'
+import { reactive, ref, watch } from 'vue'
+import { steps, schema } from './schema/Register'
 import MultiStepForm from './components/MultiStepForm.vue'
 import CInput from './components/CInput.vue'
 
 const formData = reactive({
-  name: '',
-  email: '',
-  typePerson: '',
-  document: '',
-  date: '',
-  phone: '',
-  password: ''
+  email: { value: '', error: '' },
+  typePerson: 'PF',
+  name: { value: '', error: '' },
+  document: { value: '', error: '' },
+  date: { value: '', error: '' },
+  phone: { value: '', error: '' },
+  password: { value: '', error: '' }
+})
+
+let reactiveSchema = reactive(schema(formData))
+let reactiveSteps = steps(formData)
+
+watch(() => formData.typePerson, (newVal) => {
+  reactiveSchema = reactive(schema(formData))
+  reactiveSteps = steps(formData)
 })
 
 const activeStep = ref(0)
-const teste = ref('')
-
-const steps = computed(() => registerSteps(formData))
-const schema = fullSchema(formData)
 
 const nextStep = () => {
-  if(activeStep.value < steps.value.length) {
+  if(activeStep.value < reactiveSteps.length) {
     activeStep.value++
   }
 }

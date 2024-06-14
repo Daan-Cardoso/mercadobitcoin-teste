@@ -4,24 +4,29 @@
       {{ label }}
     </span>
 
-    <div class="c-input__field">
+    <div :class="['c-input__field', classModifiers ]">
       <input
         class="c-input__field__raw"
         v-bind="inputAttrs"
-        v-mask="mask"
         v-model="value"
       />
-    </div>
+      </div>
+      
+      <span class="c-input__error" v-if="!!error">
+        {{ error }}
+      </span>
   </label>
 </template>
 
 <script setup>
-import { defineModel, useAttrs, defineOptions } from 'vue'
+import { defineModel, useAttrs, defineOptions, computed } from 'vue'
 import { filteredAttrs } from '../helpers/formHelpers'
 
-defineProps({
+const { error } = defineProps({
   label: { type: String, required: false },
-  mask: { type: String, required: false }
+  mask: { type: String, required: false },
+  type: { type: String, default: 'text' },
+  error: { type: String, required: false }
 })
 
 defineOptions({ inheritAttrs: false })
@@ -29,7 +34,13 @@ defineOptions({ inheritAttrs: false })
 const $attrs = useAttrs()
 const value = defineModel()
 
-const inputAttrs = filteredAttrs($attrs)
+const classModifiers = computed(() => {
+  return {
+    'c-input__field--has-error': !!error
+  }
+})
+
+const inputAttrs = filteredAttrs($attrs, ['type', 'class'])
 </script>
 
 <style lang="scss">
@@ -62,7 +73,11 @@ const inputAttrs = filteredAttrs($attrs)
     width: 100%;
 
     &:focus-within {
-      border-color: $primary;
+    border-color: $primary;
+    }
+      
+    &--has-error {
+      border-color: $danger;
     }
 
     &__raw {
