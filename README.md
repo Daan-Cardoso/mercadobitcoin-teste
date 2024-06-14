@@ -28,8 +28,12 @@ mercadobitcoin/
 ├── src/
 │   ├── assets/         # Recursos adicionais da aplicação, como imagens e variáveis de estilo
 │   ├── components/     # Componentes primitivos como botões e inputs
+│   ├── directives/     # Diretivas customizadas para aplicar nos elementos vue
+│   ├── helpers/        # Métodos de ajuda para uma função especifica que podem ser reaproveitados
+│   ├── schema/         # Definição das propriedades do formulário
 │   ├── services/       # Camada de abstração para consumo de APIs
 │   ├── store/          # Métodos para acessar, atualizar e remover informações do localStorage
+│   ├── utils/          # Métodos utilitários que podem ser reaproveitados
 │   └── App.vue         # Formulário renderizado diretamente no App.vue
 ├── package.json
 └── vite.config.js
@@ -58,6 +62,10 @@ Para configurar o projeto localmente, siga os passos abaixo:
    **Nota:** Para fins de desenvolvimento, foi utilizado `yarn`.
 
 4. Execute o projeto:
+   ```sh
+   npm run dev
+   ```
+   ou
    ```sh
    yarn dev
    ```

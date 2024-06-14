@@ -8,6 +8,7 @@
       <input
         class="c-input__field__raw"
         v-bind="inputAttrs"
+        v-mask="mask"
         v-model="value"
       />
     </div>
@@ -16,10 +17,11 @@
 
 <script setup>
 import { defineModel, useAttrs, defineOptions } from 'vue'
-import { filteredAttrs } from '../helpers/filterAttributes'
+import { filteredAttrs } from '../helpers/formHelpers'
 
 defineProps({
-  label: { type: String, required: false }
+  label: { type: String, required: false },
+  mask: { type: String, required: false }
 })
 
 defineOptions({ inheritAttrs: false })
@@ -39,9 +41,7 @@ const inputAttrs = filteredAttrs($attrs)
   width: 100%;
 
   @include Desktop {
-    align-items: center;
-    flex-direction: row;
-    gap: 1.5rem;
+    gap: .5rem;
   }
 
   &__label {
@@ -49,6 +49,11 @@ const inputAttrs = filteredAttrs($attrs)
     display: block;
     font-size: .8rem;
     letter-spacing: -0.4px;
+    flex-shrink: 0;
+
+    @include Desktop {
+      font-size: 1rem;
+    }
   }
 
   &__field {

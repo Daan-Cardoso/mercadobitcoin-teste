@@ -89,6 +89,10 @@ defineEmits(['action:prev', 'action:next', 'action:submit'])
       color: $dark;
       font-size: 1.5rem;
       font-weight: 700;
+
+      @include Desktop {
+        text-align: center;
+      }
     }
   }
 
@@ -99,15 +103,22 @@ defineEmits(['action:prev', 'action:next', 'action:submit'])
     width: 100%;
   }
 
-
   &__fieldset {
     display: flex;
     gap: 1rem;
-    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
     width: 100%;
 
-    @include Tablet {
-      justify-content: flex-start;
+    @include Desktop {
+      > .c-button:only-child {
+        width: 50%;
+      }
     }
   }
 }

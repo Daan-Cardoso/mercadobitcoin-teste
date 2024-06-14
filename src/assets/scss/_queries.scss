@@ -8,7 +8,7 @@ $desktop: "screen and (min-width: 1440px)";
   }
 }
 
-@mixin Tablet($only: only-tablet) {
+@mixin Tablet($only: null) {
   $query: $tablet;
 
   @if $only == only-tablet {

@@ -11,7 +11,7 @@
 
 <script setup>
 import { useAttrs, defineOptions, computed } from 'vue'
-import { filteredAttrs } from '../helpers/filterAttributes'
+import { filteredAttrs } from '../helpers/formHelpers'
 
 const { outlined } = defineProps({
   text: { type: String, required: false },

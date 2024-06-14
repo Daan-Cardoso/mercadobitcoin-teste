@@ -12,7 +12,7 @@
 
 <script setup>
 import { defineOptions, useAttrs, defineModel } from 'vue'
-import { filteredAttrs } from '../helpers/filterAttributes'
+import { filteredAttrs } from '../helpers/formHelpers'
 
 defineProps({
   label: { type: String, required: false }
