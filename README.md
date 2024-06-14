@@ -42,7 +42,7 @@ Para configurar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
    ```sh
-   git clone [https://github.com/Daan-Cardoso/mercadobitcoin-teste]
+   git clone 'https://github.com/Daan-Cardoso/mercadobitcoin-teste'
    ```
 2. Acesse o diretório do repositório:
    ```sh
