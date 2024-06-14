@@ -15,7 +15,7 @@ A imagem abaixo foi utilizada como referência de layout, conforme solicitado no
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - **Vue 3** com Composition API utilizando JavaScript
-- Recursos nativos do navegador como `localStorage` e `fetch API`
+- Recursos nativos do navegador como `fetch API`
 - **SASS** com a sintaxe SCSS para estilização
 - **Vite** como bundler
 
