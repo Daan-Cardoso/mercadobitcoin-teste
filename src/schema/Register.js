@@ -6,8 +6,6 @@ export const schema = (formData) => ({
     type: 'text',
     required: true,
     validation: (value) => {
-      if (!value.length) return 'Este campo é obrigatório'
-
       if (!validateEmail(value)) {
         return 'O email deve ser válido'
       }
@@ -25,8 +23,6 @@ export const schema = (formData) => ({
     type: 'text',
     required: true,
     validation: (value) => {
-      if (!value.length) return 'Este campo é obrigatório'
-
       if (value.length < 3) {
         return 'O nome deve ter no mínimo 3 caracteres'
       }
@@ -37,12 +33,13 @@ export const schema = (formData) => ({
     type: 'text',
     mask: formData.typePerson == 'PF' ? '###.###.###-##' : '##.###.###/####-##',
     required: true,
-    validation: (value) => {
-      const typeDocument = formData.typePerson == 'PF' ? 'CPF' : 'CNPJ'
+    validation: (value, formData) => {
+      const { typePerson } = formData
+      
+      const typeDocument = typePerson == 'PF' ? 'CPF' : 'CNPJ'
       const minValue = typePerson == 'PF' ? 14 : 18
       const cleanedMinValue = typePerson == 'PF' ? 11 : 14
 
-      if (!value.length) return 'Este campo é obrigatório'
       if (value.length < minValue) return `O ${typeDocument} deve ter ${cleanedMinValue} caracteres`
     }
   },
@@ -50,7 +47,12 @@ export const schema = (formData) => ({
     label: `Data de ${formData.typePerson == 'PF' ? 'nascimento' : 'abertura'}`,
     type: 'text',
     mask: '##/##/####',
-    // required: true
+    required: true,
+    validation: (value) => {      
+      if (value.length < 10) {
+        return 'A data deve ser válida'
+      }
+    }
   },
   phone: {
     label: 'Telefone',
@@ -58,8 +60,6 @@ export const schema = (formData) => ({
     mask: '(##) #####-####',
     required: true,
     validation: (value) => {
-      if (!value.length) return 'Este campo é obrigatório'
-      
       if (value.length < 15) {
         return 'O telefone deve ser válido'
       }
@@ -70,8 +70,6 @@ export const schema = (formData) => ({
     type: 'password',
     required: true,
     validation: (value) => {
-      if (!value.length) return 'Este campo é obrigatório'
-
       if (value.length < 6) {
         return 'A senha deve ter no mínimo 6 caracteres'
       }

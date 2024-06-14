@@ -41,3 +41,24 @@ export const validateEmail = (value) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(value);
 }
+
+export const validateFormData = (formData, schema) => {
+  const errors = {};
+
+  for (const key in schema) {
+    const field = schema[key];
+    if (field.required && !formData[key].value) {
+      errors[key] = 'Este campo é obrigatório';
+    }
+
+    if (field.validation && typeof field.validation === 'function') {
+      const error = field.validation(formData[key].value, formData);
+
+      if (error) {
+        errors[key] = error;
+      }
+    }
+  }
+
+  return errors;
+}

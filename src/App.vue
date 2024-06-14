@@ -16,6 +16,7 @@
 <script setup>
 import { reactive, ref, watch } from 'vue'
 import { steps, schema } from './schema/Register'
+import { validateFormData } from './helpers/formHelpers'
 import MultiStepForm from './components/MultiStepForm.vue'
 import CInput from './components/CInput.vue'
 
@@ -51,8 +52,31 @@ const prevStep = () => {
   }
 }
 
+const backToFirtStep = () => {
+  activeStep.value = 0
+}
+
+const checkHasErrorOnSubmit = (errors) => {
+  return Object.keys(errors).length
+}
+
+const setErrorsOnFormData = (errors) => {
+  Object.keys(errors).forEach((key) => {
+    formData[key].error = errors[key]
+  })
+}
+
 const submit = () => {
-  console.log(formData)
+  const errors = validateFormData(formData, reactiveSchema)
+
+  if (checkHasErrorOnSubmit(errors)) {
+    
+    setErrorsOnFormData(errors)
+    backToFirtStep()
+    return
+  }
+
+  console.log('Form data:', formData)
 }
 </script>
 
