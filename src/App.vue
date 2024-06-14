@@ -6,6 +6,8 @@
       :key="formData.typePerson"
       :schema="reactiveSchema"
       :steps="reactiveSteps"
+      :loading="isLoading"
+      :success="successMessage"
       @action:next="nextStep"
       @action:prev="prevStep"
       @action:submit="submit"
@@ -15,8 +17,9 @@
 
 <script setup>
 import { reactive, ref, watch } from 'vue'
-import { steps, schema } from './schema/Register'
+import { steps, schema } from './schema/registration'
 import { validateFormData } from './helpers/formHelpers'
+import { saveUser } from './services/registration'
 import MultiStepForm from './components/MultiStepForm.vue'
 import CInput from './components/CInput.vue'
 
@@ -32,6 +35,9 @@ const formData = reactive({
 
 let reactiveSchema = reactive(schema(formData))
 let reactiveSteps = steps(formData)
+
+const isLoading = ref(false)
+const successMessage = ref('')
 
 watch(() => formData.typePerson, (newVal) => {
   reactiveSchema = reactive(schema(formData))
@@ -66,17 +72,22 @@ const setErrorsOnFormData = (errors) => {
   })
 }
 
-const submit = () => {
+const submit = async () => {
   const errors = validateFormData(formData, reactiveSchema)
 
   if (checkHasErrorOnSubmit(errors)) {
-    
+
     setErrorsOnFormData(errors)
     backToFirtStep()
     return
   }
 
-  console.log('Form data:', formData)
+  isLoading.value = true
+  const [err, res] = await saveUser(formData)
+  successMessage.value = res
+  isLoading.value = false
+
+  console.log(`Errors: ${err}`, `Response:${res}`)
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <label class="c-input">
     <span class="c-input__label" v-if="label">
-      {{ label }}
+      {{ label }} <em class="c-input__label__required">{{ $attrs.required ? '*' : '' }}</em>
     </span>
 
     <div :class="['c-input__field', classModifiers ]">
@@ -40,7 +40,7 @@ const classModifiers = computed(() => {
   }
 })
 
-const inputAttrs = filteredAttrs($attrs, ['type', 'class'])
+const inputAttrs = filteredAttrs($attrs, ['type', 'class', 'required', 'validation'])
 </script>
 
 <style lang="scss">
@@ -64,6 +64,11 @@ const inputAttrs = filteredAttrs($attrs, ['type', 'class'])
 
     @include Desktop {
       font-size: 1rem;
+    }
+
+    &__required {
+      font-size: 1rem;
+      color: $danger;
     }
   }
 
@@ -91,6 +96,12 @@ const inputAttrs = filteredAttrs($attrs, ['type', 'class'])
         outline: none;
       }
     }
+  }
+
+  &__error {
+    color: $danger;
+    font-size: .8rem;
+    letter-spacing: -0.4px;
   }
 }
 </style>
