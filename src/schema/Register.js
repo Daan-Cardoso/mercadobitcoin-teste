@@ -32,7 +32,7 @@ export const schema = (ctx) => ({
     type: 'text',
     // required: true
   },
-  senha: {
+  password: {
     label: 'Senha',
     type: 'password',
     // required: true
@@ -57,7 +57,7 @@ export const steps = (ctx) => [
   },
   {
     title: 'Senha de acesso',
-    fields: [ 'name' ],
+    fields: [ 'password' ],
     actions: {
       prev: 'Voltar',
       next: 'Continuar',
@@ -65,7 +65,7 @@ export const steps = (ctx) => [
   },
   {
     title: 'Revise suas informações',
-    fields: [ 'name' ],
+    fields: [ 'email', 'name', 'document', 'date', 'phone', 'password' ],
     actions: {
       prev: 'Voltar',
       submit: 'Confirmar',

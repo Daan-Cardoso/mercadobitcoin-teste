@@ -12,7 +12,7 @@
     </header>
 
     <div class="form-step__body">
-      <div class="form-step__fieldset" v-for="(field, name) in schema" :key="name">
+      <div class="form-step__fieldset" v-for="(field, name) in stepSchema" :key="name">
         <template v-if="field?.type == 'radio'">
           <c-radio
             v-for="(option, index) in field?.options"
@@ -54,7 +54,7 @@ defineProps({
   totalSteps: { type: Number, required: true },
   formData: { type: Object, required: true },
   actions: { type: Object, required: true },
-  schema: { type: Object, required: true },
+  stepSchema: { type: Object, required: true },
 })
 
 defineEmits(['action:prev', 'action:next', 'action:submit'])

@@ -1,15 +1,13 @@
 <template>
-  <div class="actions">
-    <multi-step-form
-      :activeStep="activeStep"
-      :formData="formData"
-      :schema="schema"
-      :steps="steps"
-      @action:next="nextStep"
-      @action:prev="prevStep"
-      @action:submit="submit"
-    />
-  </div>
+  <multi-step-form
+    :activeStep="activeStep"
+    :formData="formData"
+    :schema="schema"
+    :steps="steps"
+    @action:next="nextStep"
+    @action:prev="prevStep"
+    @action:submit="submit"
+  />
 </template>
 
 <script setup>

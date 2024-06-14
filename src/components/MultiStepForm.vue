@@ -5,7 +5,7 @@
         <form-step
           :actions="step.actions"
           :form-data="formData"
-          :schema="setSchema(index)"
+          :step-schema="setSchema(index)"
           :current-step="index + 1"
           :total-steps="steps?.length"
           :title="step.title"
@@ -33,7 +33,7 @@ defineEmits(['action:prev', 'action:next', 'action:submit'])
 const setSchema = (stepIndex) => {
   const currentStepFields = steps[stepIndex]?.fields
   const filteredSchema = {}
-  
+
   currentStepFields.forEach(field => {
     if (schema[field]) {
       filteredSchema[field] = schema[field]
