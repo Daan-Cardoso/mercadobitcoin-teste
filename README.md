@@ -8,7 +8,7 @@ O desafio consistiu na criação de um formulário de múltiplas etapas (4 etapa
 
 A imagem abaixo foi utilizada como referência de layout, conforme solicitado no enunciado.
 
-![Layout de Referência](path/to/layout-image.jpg)
+![Layout de Referência](./layout.png)
 
 ## Stack Tecnológica
 
@@ -31,7 +31,6 @@ mercadobitcoin/
 │   ├── helpers/        # Métodos de ajuda para uma função especifica que podem ser reaproveitados
 │   ├── schema/         # Definição das propriedades do formulário
 │   ├── services/       # Camada de abstração para consumo de APIs
-│   ├── store/          # Métodos para acessar, atualizar e remover informações do localStorage
 │   └── App.vue         # Formulário renderizado diretamente no App.vue
 ├── package.json
 └── vite.config.js
